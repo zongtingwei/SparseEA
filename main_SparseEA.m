@@ -10,7 +10,7 @@ clear;
 tic;
 
 algorithmName = 'SparseEA';  
-dataNameArray = {'lung'}; % data set
+dataNameArray = {'lung'}; % dataset
 global maxFES
 maxFES = 100;  % max number of iteration
 global choice
