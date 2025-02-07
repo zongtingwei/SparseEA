@@ -1,7 +1,7 @@
 # SparseEA
 SparseEA code for solving multi-objective feature selection problems in classification without using PLATEMO
 ### Abstract:
-Reference: Tian Y, Zhang X, Wang C, et al. An evolutionary algorithm for large-scale sparse multiobjective optimization problems[J]. IEEE Transactions on Evolutionary Computation, 2019, 24(2): 380-393.
+Reference: Tian Y, Zhang X, Wang C, et al. [An Evolutionary Algorithm for Large-Scale Sparse Multiobjective Optimization Problems](https://ieeexplore.ieee.org/abstract/document/8720021)[J]. IEEE Transactions on Evolutionary Computation, 2019, 24(2): 380-393.
 ###
 Tian Y, Cheng R, Zhang X, et al. PlatEMO: A MATLAB platform for evolutionary multi-objective optimization [educational forum][J]. IEEE Computational Intelligence Magazine, 2017, 12(4): 73-87.
 ###
