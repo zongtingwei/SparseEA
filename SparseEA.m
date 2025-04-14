@@ -77,9 +77,9 @@ end
 
 function [Population, Dec, Mask] = InitializePopulation(dim, sizep, lower, upper, encoding, train_F, train_L)
     T = min(dim, sizep * 3);
-    PopDec = zeros(sizep, dim); % 决策变量
-    PopObj = zeros(sizep, 2); % 假设有两个目标，初始化为0
-    PopCon = zeros(sizep, 1); % 假设没有约束违反，初始化为0
+    PopDec = zeros(sizep, dim); 
+    PopObj = zeros(sizep, 2); 
+    PopCon = zeros(sizep, 1); 
     
     for i = 1:sizep
         k = randperm(T, 1);
@@ -87,16 +87,14 @@ function [Population, Dec, Mask] = InitializePopulation(dim, sizep, lower, upper
         PopDec(i, j) = 1;
     end
     
-    % 创建种群对象
     Population = arrayfun(@(i) struct('decs', PopDec(i, :), 'objs', PopObj(i, :), 'cons', PopCon(i)), 1:sizep);
     Dec = PopDec;
-    Mask = PopDec; % 初始掩码与决策变量相同
+    Mask = PopDec;
 end
 
 function Offspring = EvaluateOffspring(OffDec, OffMask, train_F, train_L)
     % Evaluate the offspring
     N = size(OffDec, 1);
-    % 预分配结构体数组（而非cell数组）
     Offspring = repmat(struct('decs', [], 'objs', [], 'cons', []), N, 1);
     for i = 1:N
         [obj1, obj2] = FSKNNfeixiang(OffDec(i, :) .* OffMask(i, :), train_F, train_L);
