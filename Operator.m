@@ -15,7 +15,6 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
     Parent1Mask = ParentMask(1:N/2,:);
     Parent2Mask = ParentMask(N/2+1:end,:);
     
-    %% 删除错误的检查条件
     % if size(ParentMask, 2) > length(Fitness)
     %     error('Fitness array is too small: %d < %d', length(Fitness), size(ParentMask, 2));
     % end
@@ -26,7 +25,6 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
         if rand < 0.5
             index = find(Parent1Mask(i,:) & ~Parent2Mask(i,:));
             if ~isempty(index)
-                % 使用父代的适应度进行选择（示例：选择适应度较好的父代）
                 if Fitness(i,1) < Fitness(i+N/2,1)
                     selected_index = randi(length(index));
                     OffMask(i,index(selected_index)) = 0;
@@ -48,7 +46,6 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
         if rand < 0.5
             index = find(OffMask(i,:));
             if ~isempty(index)
-                % 随机变异
                 selected_index = randi(length(index));
                 OffMask(i,index(selected_index)) = 0;
             end
