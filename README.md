@@ -1,5 +1,5 @@
 # SparseEA
-SparseEA code for solving multi-objective feature selection problems in classification without using PLATEMO
+SparseEA code for solving multi-objective feature selection problems in classification.
 ### Abstract:
 Reference: Tian Y, Zhang X, Wang C, et al. [An Evolutionary Algorithm for Large-Scale Sparse Multiobjective Optimization Problems](https://ieeexplore.ieee.org/abstract/document/8720021)[J]. IEEE Transactions on Evolutionary Computation, 2019, 24(2): 380-393.
 ###
