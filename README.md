@@ -6,11 +6,11 @@ SparseEA: code for "An Evolutionary Algorithm for Large-Scale Sparse Multiobject
 </h1>
 
 [![Platform](https://img.shields.io/badge/Platform-MATLAB-orange)](https://www.mathworks.com/products/matlab.html)
-[![Dataset](https://img.shields.io/badge/Dataset-feature_selection-green)](https://github.com/zongtingwei/Feature-Selection-FS-datasets)
+[![Dataset](https://img.shields.io/badge/Datasets-feature_selection-green)](https://github.com/zongtingwei/Feature-Selection-FS-datasets)
 
 [Source Code](https://github.com/zongtingwei/SparseEA)
 | [Documentation](https://ieeexplore.ieee.org/abstract/document/8720021)
-| [Dataset](https://github.com/zongtingwei/Feature-Selection-FS-datasets)
+| [Datasets](https://github.com/zongtingwei/Feature-Selection-FS-datasets)
 
 </div>
 <br>
@@ -48,7 +48,7 @@ This code was developed for feature selection tasks in classification. The frame
 
 ### How to Run
 
-1. Download the code and dataset from the repository.
+1. Download the code and datasets from the repository.
 2. Open MATLAB and set the working directory to the project root.
 3. Run the `main_SparseEA.m` script.
 4. You can choose the provided "dataset.mat" file in the "dataset" folder for testing.
