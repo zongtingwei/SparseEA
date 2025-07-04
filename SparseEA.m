@@ -9,7 +9,7 @@ function [solution, time, off, ofit, site, paretoAVE, tempVar] = SparseEA(train_
     thres = 0.1; % Exponential decay constant
     paretoAVE = zeros(1, 2); % To save final result of the Pareto front
 
-    %% Create Problem object
+    % Create Problem object
     Problem = struct(...
         'encoding', 4, ...
         'lower', zeros(1, dim), ...
@@ -17,10 +17,10 @@ function [solution, time, off, ofit, site, paretoAVE, tempVar] = SparseEA(train_
         'Evaluation', @(Dec) EvaluatePopulation(Dec, train_F, train_L) ...
     );
 
-    %% Initialization
+    % Initialization
     [Population, Dec, Mask] = InitializePopulation(dim, sizep, Problem.lower, Problem.upper, Problem.encoding, train_F, train_L);
 
-    %% Evaluate initial population
+    % Evaluate initial population
     for i = 1:sizep
         [ofit(i, 1), ofit(i, 2)] = FSKNNfeixiang(Population(i).decs, train_F, train_L);
         if size(ofit(i, :), 2) ~= 2
@@ -29,26 +29,26 @@ function [solution, time, off, ofit, site, paretoAVE, tempVar] = SparseEA(train_
         Population(i).objs = ofit(i, :);
     end
 
-    %% Environmental selection
+    % Environmental selection
     [Population, FrontNo, CrowdDis] = EnvironmentalSelection(Population, sizep);
 
-    %% Optimization
+    % Optimization
     while FES <= maxFES
         MatingPool = TournamentSelection(2, sizep, FrontNo, -CrowdDis);
         [OffDec, OffMask] = Operator(Problem, Dec(MatingPool, :), Mask(MatingPool, :), ofit(MatingPool, :));
         Offspring = EvaluateOffspring(OffDec, OffMask, train_F, train_L);
 
-        %% Combine current population and offspring
+        % Combine current population and offspring
         CombinedPopulation = [Population; Offspring];
 
-        %% Environmental selection for the next generation
+        % Environmental selection for the next generation
         [Population, FrontNo, CrowdDis] = EnvironmentalSelection(CombinedPopulation, sizep);
 
-        %% Update Dec and Mask
+        % Update Dec and Mask
         Dec = [Population.decs];
         Mask = [Population.decs]; % Assuming Mask is the same as Dec for simplicity
 
-        %% Evaluate new population
+        % Evaluate new population
         for i = 1:size(Population, 1)
             [ofit(i, 1), ofit(i, 2)] = FSKNNfeixiang(Population(i).decs, train_F, train_L);
             if size(ofit(i, :), 2) ~= 2
@@ -56,7 +56,7 @@ function [solution, time, off, ofit, site, paretoAVE, tempVar] = SparseEA(train_
             end
         end
 
-        %% Update solution and pareto front
+        % Update solution and pareto front
         site = find(FrontNo == 1);
         solution = ofit(site, :);
         paretoAVE(1) = mean(solution(:, 1));
@@ -65,7 +65,7 @@ function [solution, time, off, ofit, site, paretoAVE, tempVar] = SparseEA(train_
         FES = FES + 1;
     end
 
-    %% Finalization
+    % Finalization
     tempVar{1} = ofit; % All objective function values
     tempVar{2} = FrontNo; % All front numbers
     tempVar{3} = CrowdDis; % All crowding distances
