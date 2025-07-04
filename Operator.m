@@ -10,7 +10,7 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
     % Computational Intelligence Magazine, 2017, 12(4): 73-87".
     %--------------------------------------------------------------------------
 
-    %% Parameter setting
+    % Parameter setting
     [N,D]       = size(ParentDec);
     Parent1Mask = ParentMask(1:N/2,:);
     Parent2Mask = ParentMask(N/2+1:end,:);
@@ -19,7 +19,7 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
     %     error('Fitness array is too small: %d < %d', length(Fitness), size(ParentMask, 2));
     % end
 
-    %% Crossover for mask
+    % Crossover for mask
     OffMask = Parent1Mask;
     for i = 1 : N/2
         if rand < 0.5
@@ -41,7 +41,7 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
         end
     end
     
-    %% Mutation for mask
+    % Mutation for mask
     for i = 1 : N/2
         if rand < 0.5
             index = find(OffMask(i,:));
@@ -58,7 +58,7 @@ function [OffDec,OffMask] = Operator(Problem,ParentDec,ParentMask,Fitness)
         end
     end
     
-    %% Crossover and mutation for dec
+    % Crossover and mutation for dec
     if any(Problem.encoding~=4)
         OffDec = OperatorGAhalf(Problem,ParentDec);
         OffDec(:,Problem.encoding==4) = 1;
